@@ -4,7 +4,6 @@ const Header = () => {
   return (
     <header>
       <Link to='/'>Fast React Pizza Co.</Link>
-      <p>Ski</p>
     </header>
   );
 };
