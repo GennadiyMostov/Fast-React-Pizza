@@ -1,10 +1,17 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigation } from 'react-router-dom';
 import CartOverview from '../Features/Cart/CartOverview';
 import Header from './Header';
+import LoadingSpinner from './LoadingSpinner';
 
 const AppLayout = () => {
+  const navigate = useNavigation();
+
+  const isLoading = navigate.state === 'loading';
+
   return (
-    <div>
+    <div className='layout'>
+      {isLoading && <LoadingSpinner />}
+
       <Header />
 
       <main>
