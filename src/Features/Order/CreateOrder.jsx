@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Form, redirect, useActionData, useNavigation } from 'react-router-dom';
 import { createOrder } from '../../Services/apiRestaurant';
+import Button from '../../UI/Button';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -50,13 +51,13 @@ function CreateOrder() {
       <Form method='POST' action='/order/new'>
         <div>
           <label>First Name</label>
-          <input type='text' name='customer' required />
+          <input type='text' name='customer' required className='input' />
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input type='tel' name='phone' required />
+            <input type='tel' name='phone' required className='input' />
           </div>
           {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
@@ -64,7 +65,7 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input type='text' name='address' required />
+            <input type='text' name='address' required className='input' />
           </div>
         </div>
 
@@ -75,15 +76,16 @@ function CreateOrder() {
             id='priority'
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
+            className='h-6 w-6 accent-yellow-400 focus:outline-none focus:ring focus:ring-yellow-400 focus:ring-offset-2'
           />
           <label htmlFor='priority'>Want to yo give your order priority?</label>
         </div>
 
         <div>
           <input type='hidden' name='cart' value={JSON.stringify(cart)} />
-          <button disabled={isSubmitting}>
+          <Button disabled={isSubmitting}>
             {isSubmitting ? 'Placing Order' : 'Order now'}
-          </button>
+          </Button>
         </div>
       </Form>
     </div>
