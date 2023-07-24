@@ -20,7 +20,7 @@ const SearchOrder = () => {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        className='text-center'
+        className='rounded border-2 border-stone-400 text-center'
         placeholder='Search Order Number'
         value={query}
         onChange={(event) => setQuery(event.target.value)}
