@@ -8,7 +8,6 @@ import CreateOrder, {
 import Order, { loader as orderLoader } from './Features/Order/Order';
 import AppLayout from './UI/AppLayout';
 import Error from './UI/Error';
-import { createOrder } from './Services/apiRestaurant';
 
 const router = createBrowserRouter([
   {
