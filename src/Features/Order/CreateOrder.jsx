@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, redirect, useActionData, useNavigation } from 'react-router-dom';
 import { createOrder } from '../../Services/apiRestaurant';
 import Button from '../../UI/Button';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { clearCart, getCart, getTotalCartPrice } from '../Cart/cartSlice';
 import EmptyCart from '../Cart/EmptyCart';
 import store from '../../store';
@@ -42,13 +42,13 @@ function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
   const username = useSelector((state) => state.user.username);
   const cart = useSelector(getCart);
+  const totalCartPrice = useSelector(getTotalCartPrice);
+
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
   const formErrors = useActionData();
+  const dispatch = useDispatch();
 
-  console.log(cart);
-
-  const totalCartPrice = useSelector(getTotalCartPrice);
   const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
   const totalPrice = totalCartPrice + priorityPrice;
 
@@ -61,6 +61,7 @@ function CreateOrder() {
       </h2>
       {/* <Form method='POST' action='/order/new'> */}
       {/* For Reference if posting to a specific URL, default is Form posts to closest URL match*/}
+
       <Form method='POST' action='/order/new'>
         <div className='mb-5 flex flex-col gap-2 sm:flex-row sm:items-center'>
           <label className='sm:basis-40'>First Name</label>
