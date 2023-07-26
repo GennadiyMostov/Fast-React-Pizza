@@ -10,6 +10,7 @@ import {
   formatDate,
 } from '../../Utilities/helpers';
 import { useEffect } from 'react';
+import UpdateOrder from './UpdateOrder';
 
 function Order() {
   const order = useLoaderData();
@@ -19,8 +20,6 @@ function Order() {
   useEffect(() => {
     if (!fetcher.data && fetcher.state === 'idle') fetcher.load('/menu');
   }, [fetcher]);
-
-  console.log(fetcher.data);
 
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
   const {
@@ -91,6 +90,7 @@ function Order() {
           Due On Delivery: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
+      {!priority && <UpdateOrder order={order} />}
     </div>
   );
 }
